@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.io import *
 from scipy.spatial.distance import cdist
+import sys as sys
 
 # Read the mpg dataset
 # t is a n-by-1 vector of target values, miles per gallon
