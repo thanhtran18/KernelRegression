@@ -5,7 +5,9 @@ import math as math
 
 
 def evaluate_gaussian_kernel(X_test, t_test, X_train, t_train, h):
-    G = (1 / math.sqrt(2 * math.pi * h**2)) * np.exp(-utils.dist2(X_test.reshape(X_test.shape[0], 1), X_train) / (2 * h**2))
+    # G = (1 / math.sqrt(2 * math.pi * h**2)) * np.exp(-utils.dist2(X_test.reshape(X_test.shape[0], 1), X_train) / (2 * h**2))
+    G = 0.75 * (1 - utils.dist2(X_test.reshape(X_test.shape[0], 1), X_train) / (h**2))
+    G = np.maximum(G, 0)
     T = np.tile(t_train.T, [X_test.shape[0], 1])
     denom = np.sum(G, 1)
     default_value = np.mean(t_train)
