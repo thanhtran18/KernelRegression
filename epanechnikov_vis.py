@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import math as math
 
 
-def evaluate_gaussian_kernel(X_test, t_test, X_train, t_train, h):
+def evaluate_epanechnikov(X_test, t_test, X_train, t_train, h):
     # G = (1 / math.sqrt(2 * math.pi * h**2)) * np.exp(-utils.dist2(X_test.reshape(X_test.shape[0], 1), X_train) / (2 * h**2))
     G = 0.75 * (1 - utils.dist2(X_test.reshape(X_test.shape[0], 1), X_train) / (h**2))
     G = np.maximum(G, 0)
@@ -44,7 +44,7 @@ h_values = [0.01, 0.1, 0.25, 1, 2, 3, 4]
 
 for h in h_values:
     x_ev = np.arange(min(X_train), max(X_train), 0.01)
-    [y_ev, test_err] = evaluate_gaussian_kernel(x_ev, t_test, X_train, t_train, h)
+    [y_ev, test_err] = evaluate_epanechnikov(x_ev, t_test, X_train, t_train, h)
 
     plt.plot(x_ev, y_ev, 'r.-')
     plt.plot(X_train, t_train, 'gx', markersize=10)
